@@ -17,6 +17,9 @@ def dataJson(request):
     for row in curs.fetchall():
         result_dict = {}
         for i, value in enumerate(row):
+            if value == 1:
+                value = value.strip();
+            
             result_dict[columns[i]] = value
         results.append(result_dict)
 
