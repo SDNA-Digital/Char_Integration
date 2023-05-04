@@ -8,7 +8,7 @@ def dataJson(request):
     x = []
     y = []
     label=[]
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
     curs.execute('SELECT areaid as "AreaID", areanome as "Area", COUNT(*) as "QtdeIncidentes" FROM dash_incidentes GROUP BY areaid, areanome')
 
