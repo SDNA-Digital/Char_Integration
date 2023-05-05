@@ -5,7 +5,7 @@ import json
 try:
     connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
-    curs.execute('SELECT processonivelrisco as "Nivel de Risco", processodata as "data", COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, processodata')
+    curs.execute('SELECT processonivelrisco as "Nivel de Risco", COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, processodata')
     # corrigin erro: data nao é um tipo de dado que pode ser armazenado em um JSON
     nivel_risco = {
     'MBA': 'Muito Baixo',

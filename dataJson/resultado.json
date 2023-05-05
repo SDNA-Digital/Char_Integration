@@ -1,27 +1,32 @@
 [
     {
+        "AreaID": 5,
+        "Area": "Comercial",
+        "QtdeIncidentes": 24
+    },
+    {
         "AreaID": 4,
-        "Area": "Marketing",
-        "QtdeIncidentes": 16
+        "Area": "RH",
+        "QtdeIncidentes": 5
+    },
+    {
+        "AreaID": 6,
+        "Area": "Administrativo",
+        "QtdeIncidentes": 9
     },
     {
         "AreaID": 2,
-        "Area": "operacional",
-        "QtdeIncidentes": 8
-    },
-    {
-        "AreaID": 3,
-        "Area": "Recursos Humanos",
-        "QtdeIncidentes": 12
+        "Area": "Operacional",
+        "QtdeIncidentes": 9
     },
     {
         "AreaID": 1,
         "Area": "Juridico",
-        "QtdeIncidentes": 8
+        "QtdeIncidentes": 21
     },
     {
-        "AreaID": 5,
-        "Area": "financeiro",
-        "QtdeIncidentes": 8
+        "AreaID": 3,
+        "Area": "Financeiro",
+        "QtdeIncidentes": 24
     }
 ]
