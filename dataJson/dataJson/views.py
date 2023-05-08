@@ -43,8 +43,6 @@ def Dash_Politicas_Manuais(request):
         for i, tupleItem in enumerate(tuple):
             if i == 1:
                 tupleItem = tupleItem.strip()
-            if i == 2:
-                tupleItem = str(tupleItem)
                 
             result_dict[columns[i]] = tupleItem
         ArrayDic.append(result_dict)
@@ -82,8 +80,38 @@ def Dash_Norma (request):
                    
             result_dict[columns[i]] = tupleItem
         ArrayDic.append(result_dict)
+    print(ArrayDic)
 
     curs.close
     connection.close
     
     return JsonResponse(ArrayDic, safe=False)
+
+def Dash_RadarConformidade (request):
+    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    curs = connection.cursor()
+
+    ArrayDic = []
+
+    curs.execute('select * from Radar_conformidade')
+
+    result = curs.fetchall()
+
+    columns = [col[0] for col in curs.description]
+
+    for tuple in result:
+        result_dict ={}
+        for i, tupleItem in enumerate(tuple):
+            if i == 1:
+                tupleItem = tupleItem.strip()
+                   
+            result_dict[columns[i]] = tupleItem
+        ArrayDic.append(result_dict)
+    print(ArrayDic)
+
+    curs.close
+    connection.close
+    
+    return JsonResponse(ArrayDic, safe=False)
+
+
