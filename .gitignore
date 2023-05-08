@@ -1,3 +1,4 @@
-resultado.json
 venv
-
+resultado.json
+__pycache__
+indev.py
