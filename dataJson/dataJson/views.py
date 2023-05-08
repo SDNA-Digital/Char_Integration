@@ -5,7 +5,7 @@ import psycopg2 as pg
 
 def Dash_IncidenteArea(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
     curs.execute('SELECT areaid as "AreaID", areanome as "Area", COUNT(*) as "QtdeIncidentes" FROM dash_incidentes GROUP BY areaid, areanome')
 
@@ -28,7 +28,7 @@ def Dash_IncidenteArea(request):
 
 def Dash_Politicas_Manuais(request):
     
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
     curs.execute('select * from dash_politicas_manuais')
     
@@ -56,7 +56,7 @@ def Dash_Politicas_Manuais(request):
 
 def Dash_Norma (request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
 
     curs.execute('select count(*) as qtdnorma from norma ')
@@ -88,7 +88,8 @@ def Dash_Norma (request):
     return JsonResponse(ArrayDic, safe=False)
 
 def Dash_RadarConformidade (request):
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
 
     ArrayDic = []
