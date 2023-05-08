@@ -1,7 +1,8 @@
 import psycopg2 as pg
 import json
 
-try:
+def Dash_Processo (request)
+
     connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
     curs.execute('SELECT processonivelrisco as "Nivel de Risco", mes as "Mes" , COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, "Mes" ORDER BY "Mes", "Nivel de Risco"')
@@ -58,6 +59,3 @@ try:
     json_result = json.dumps(final_results, indent=4)
     with open('resultado.json', 'w') as arquivo:
         arquivo.write(json_result)
-
-except Exception as e:
-    print("Ocorreu um erro:", e)
