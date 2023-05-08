@@ -21,6 +21,7 @@ from .views import Dash_Politicas_Manuais
 from .views import Dash_Norma
 from .views import Dash_RadarConformidade
 from .views import Dash_Processo
+from .views import Card_Processos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,6 @@ urlpatterns = [
     path('Dash_Politicas_Manuais/', Dash_Politicas_Manuais),
     path('Dash_Normas/', Dash_Norma),
     path('Dash_RadarConformidade/', Dash_RadarConformidade),
-    path('Dash_Processo/', Dash_Processo)
+    path('Dash_Processo/', Dash_Processo),
+    path('Card_ProcessosMapeados/', Card_Processos)
 ]

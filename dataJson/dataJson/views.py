@@ -169,5 +169,27 @@ def Dash_Processo (request):
     for mes, data in results_grouped.items():
         data['Mes'] = mes
         final_results.append(data)
+        
+    return JsonResponse(final_results, safe=False)
+        
+def Card_Processos(request):
 
-        return JsonResponse(final_results, safe=False)
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
+    curs = connection.cursor()
+    curs.execute('SELECT qtde_processos as "Processos_mapeados" FROM card_processos GROUP BY qtde_processos')
+
+    columns = [col[0] for col in curs.description]
+    results = []
+    for row in curs.fetchall():
+        result_dict = {}
+        for i, value in enumerate(row):
+            if i == 1:
+                value = value.strip()
+
+            result_dict[columns[i]] = value
+        results.append(result_dict)
+
+    curs.close
+    connection.close
+    
+    return JsonResponse(results, safe=False)
