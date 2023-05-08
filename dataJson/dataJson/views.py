@@ -114,7 +114,7 @@ def Dash_RadarConformidade (request):
     
     return JsonResponse(ArrayDic, safe=False)
 
-def Dash_Processo (request)
+def Dash_Processo (request):
 
     connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()

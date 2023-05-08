@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import dataJson
+from .views import Dash_IncidenteArea 
+from .views import Dash_Politicas_Manuais
+from .views import Dash_Norma
+from .views import Dash_RadarConformidade
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dataJson/', dataJson)
+    path('Dash_IncidenteArea/', Dash_IncidenteArea),
+    path('Dash_Politicas_Manuais/', Dash_Politicas_Manuais),
+    path('Dash_Normas/', Dash_Norma),
+    path('Dash_RadarConformidade/', Dash_RadarConformidade),
+    path('Dash_Processo/', Dash_RadarConformidade)
 ]
