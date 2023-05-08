@@ -169,8 +169,9 @@ def Dash_Processo (request):
     for mes, data in results_grouped.items():
         data['Mes'] = mes
         final_results.append(data)
-        return JsonResponse(results, safe=False)
-    
+        
+    return JsonResponse(final_results, safe=False)
+        
 def Card_Processos(request):
 
     connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
