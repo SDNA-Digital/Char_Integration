@@ -6,7 +6,7 @@ try:
     curs = connection.cursor()
     curs.execute('SELECT processonivelrisco as "Nivel de Risco", mes as "Mes" , COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, "Mes" ORDER BY "Mes", "Nivel de Risco"')
 
-    nivel_risco = {
+    dic_nivel_risco = {
         'MBA': 'Muito Baixo', 
         'BAI': 'Baixo', 
         'MOD': 'Moderado', 
@@ -33,7 +33,7 @@ try:
     for row in curs.fetchall():
         result_dict = {}
         result_dict['Mes'] = dic_date_mounth[row[1]]
-        result_dict['Nível de Risco'] = nivel_risco[row[0]]
+        result_dict['Nível de Risco'] = dic_nivel_risco[row[0]]
         result_dict['QtdeProcessos'] = row[2]
         results.append(result_dict)
 
@@ -45,10 +45,10 @@ try:
         mes = result['Mes']
         if mes not in results_grouped:
             results_grouped[mes] = {}
-        nivel_risco = result['Nível de Risco']
-        if nivel_risco not in results_grouped[mes]:
-            results_grouped[mes][nivel_risco] = 0
-        results_grouped[mes][nivel_risco] += result['QtdeProcessos']
+        dic_nivel_risco = result['Nível de Risco']
+        if dic_nivel_risco not in results_grouped[mes]:
+            results_grouped[mes][dic_nivel_risco] = 0
+        results_grouped[mes][dic_nivel_risco] += result['QtdeProcessos']
     
     final_results = []
     for mes, data in results_grouped.items():
