@@ -1,3 +1,4 @@
 venv
 resultado.json
 indev.py
+__pycache__
