@@ -193,3 +193,49 @@ def Card_Processos(request):
     connection.close
     
     return JsonResponse(results, safe=False)
+
+def Dash_ProcessoxArea(request):
+
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
+    curs = connection.cursor()
+    curs.execute('SELECT processonivelrisco as "Nivel de Risco", areaid as "Area" , COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, "Area" ORDER BY "Area", "Nivel de Risco"')
+
+    dic_nivel_risco = {
+        'MBA': 'Muito Baixo', 
+        'BAI': 'Baixo', 
+        'MOD': 'Moderado', 
+        'ALT': 'Alto', 
+        'MAL': 'Muito Alto'
+    }
+
+    results = []
+    for row in curs.fetchall():
+        result_dict = {}
+        areaid = result_dict['Area'] = row[1]
+        result_dict['Nivel de Risco'] = dic_nivel_risco[row[0]]
+        result_dict['QtdeProcessos'] = row[2]
+        results.append(result_dict)
+    
+    curs.close()
+    connection.close()
+
+    results_grouped = {}
+    for result in results:
+        areaid = result['Area']
+        if areaid not in results_grouped:
+            results_grouped[areaid] = {}
+        dic_nivel_risco = result['Nivel de Risco']
+        if dic_nivel_risco not in results_grouped[areaid]:
+            results_grouped[areaid][dic_nivel_risco] = 0
+        results_grouped[areaid][dic_nivel_risco] += result['QtdeProcessos']
+
+    final_results = []
+    for areaid, data in results_grouped.items():
+            data['Area'] = areaid
+            final_results.append(data)
+    
+    return JsonResponse(final_results, safe=False)
+
+# teste local do arquivo JSON>>>>>>>    json_result = json.dumps(final_results, indent=4)
+#                                       with open('resultado.json', 'w') as arquivo:
+#                                       arquivo.write(json_result)
