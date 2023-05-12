@@ -23,6 +23,7 @@ from .views import Dash_RadarConformidade
 from .views import Dash_Processo
 from .views import Card_Processos
 from .views import Dash_ProcessoxArea
+from .views import Dash_PlanosMitigantes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('Dash_RadarConformidade/', Dash_RadarConformidade),
     path('Dash_Processo/', Dash_Processo),
     path('Card_ProcessosMapeados/', Card_Processos),
-    path('Dash_ProcessosxArea/', Dash_ProcessoxArea)
+    path('Dash_ProcessosxArea/', Dash_ProcessoxArea),
+    path('Dash_PlanosMitigantes/', Dash_PlanosMitigantes)
 ]

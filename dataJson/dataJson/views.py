@@ -130,15 +130,15 @@ def Dash_Processo (request):
     }
     
     dic_date_mounth = {
-        '01': 'Janeiro',
-        '02': 'Fevereiro',
-        '03': 'Marco',
-        '04': 'Abril',
-        '05': 'Maio',
-        '06': 'Junho',
-        '07': 'Julho',
-        '08': 'Agosto',
-        '09': 'Setembro',
+        '1': 'Janeiro',
+        '2': 'Fevereiro',
+        '3': 'Marco',
+        '4': 'Abril',
+        '5': 'Maio',
+        '6': 'Junho',
+        '7': 'Julho',
+        '8': 'Agosto',
+        '9': 'Setembro',
         '10': 'Outubro',
         '11': 'Novembro',
         '12': 'Dezembro'
@@ -147,7 +147,7 @@ def Dash_Processo (request):
     results = []
     for row in curs.fetchall():
         result_dict = {}
-        result_dict['Mes'] = dic_date_mounth[row[1]]
+        result_dict['Mes'] = dic_date_mounth[str(row[1])]
         result_dict['Nível de Risco'] = dic_nivel_risco[row[0]]
         result_dict['QtdeProcessos'] = row[2]
         results.append(result_dict)
@@ -234,6 +234,63 @@ def Dash_ProcessoxArea(request):
             data['Area'] = areaid
             final_results.append(data)
     
+    return JsonResponse(final_results, safe=False)
+
+def Dash_PlanosMitigantes(request):
+
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
+    curs = connection.cursor()
+    curs.execute('SELECT tarefastatustarefa as "status", mes as "mes_criacao", tarefaprevtermino as "prevtermino" , COUNT(*) AS "QtdeTarefas" FROM dash_tarefa GROUP BY tarefastatustarefa, "mes_criacao", tarefaprevtermino ORDER BY "mes_criacao", "status", "prevtermino"')
+
+    dic_status_tarefa = {
+        '1': 'Nao iniciado', 
+        '2': 'Em andamento', 
+        '3': 'Em aprovacao', 
+        '4': 'Concluido', 
+        '5': 'Cancelado'
+    }
+
+    dic_date_mounth = {
+        '1': 'Janeiro',
+        '2': 'Fevereiro',
+        '3': 'Marco',
+        '4': 'Abril',
+        '5': 'Maio',
+        '6': 'Junho',
+        '7': 'Julho',
+        '8': 'Agosto',
+        '9': 'Setembro',
+        '10': 'Outubro',
+        '11': 'Novembro',
+        '12': 'Dezembro'
+    }
+
+    results = []
+    for row in curs.fetchall():
+        result_dict = {}
+        result_dict['mes_criacao'] = dic_date_mounth[str(row[1])]
+        result_dict['status'] = dic_status_tarefa[str(row[0])]
+        result_dict['QtdeProcessos'] = row[3]
+        results.append(result_dict)
+
+    curs.close()
+    connection.close()
+
+    results_grouped = {}
+    for result in results:
+        mes = result['mes_criacao']
+        if mes not in results_grouped:
+            results_grouped[mes] = {}
+        dic_status_tarefa = result['status']
+        if dic_status_tarefa not in results_grouped[mes]:
+            results_grouped[mes][dic_status_tarefa] = 0
+        results_grouped[mes][dic_status_tarefa] += result['QtdeProcessos']
+
+    final_results = []
+    for mes, data in results_grouped.items():
+        data['mes_criacao'] = mes
+        final_results.append(data)
+        print(final_results)
     return JsonResponse(final_results, safe=False)
 
 # teste local do arquivo JSON>>>>>>>    json_result = json.dumps(final_results, indent=4)
