@@ -23,7 +23,7 @@ from .views import Dash_RadarConformidade
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Dash_IncidenteArea/', Dash_IncidenteArea),
+    path('dataJson/', Dash_IncidenteArea),
     path('Dash_Politicas_Manuais/', Dash_Politicas_Manuais),
     path('Dash_Normas/', Dash_Norma),
     path('Dash_RadarConformidade/', Dash_RadarConformidade)

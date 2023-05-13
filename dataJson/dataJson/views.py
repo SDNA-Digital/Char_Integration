@@ -59,14 +59,9 @@ def Dash_Norma (request):
     connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
     curs = connection.cursor()
 
-    curs.execute('select count(*) as qtdnorma from norma ')
-
-    result = curs.fetchall()
-    qtdnormas ={'Qtdnormas':result[0][0]}
     ArrayDic = []
-    ArrayDic.append(qtdnormas)
-
-    curs.execute('select * from Radar_regulatorio ')
+    
+    curs.execute('select * from Radar_regulatorio')
 
     result = curs.fetchall()
 
