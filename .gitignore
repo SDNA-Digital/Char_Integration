@@ -1,0 +1,5 @@
+venv
+resultado.json
+__pycache__
+indev.py
+db.sqlite3
