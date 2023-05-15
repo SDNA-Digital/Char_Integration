@@ -84,7 +84,10 @@ def Dash_Norma (request):
 
     curs.close
     connection.close
-    
+
+    json_result = json.dumps(ArrayDic, indent=4)
+    with open('resultado.json', 'w') as arquivo:
+        arquivo.write(json_result)
     return JsonResponse(ArrayDic, safe=False)
 
 def Dash_RadarConformidade (request):
