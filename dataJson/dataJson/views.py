@@ -56,17 +56,12 @@ def Dash_Politicas_Manuais(request):
 
 def Dash_Norma (request):
 
-    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
+    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
     curs = connection.cursor()
 
-    curs.execute('select count(*) as qtdnorma from norma ')
-
-    result = curs.fetchall()
-    qtdnormas ={'Qtdnormas':result[0][0]}
     ArrayDic = []
-    ArrayDic.append(qtdnormas)
-
-    curs.execute('select * from Radar_regulatorio ')
+    
+    curs.execute('select * from Radar_regulatorio')
 
     result = curs.fetchall()
 
@@ -84,10 +79,7 @@ def Dash_Norma (request):
 
     curs.close
     connection.close
-
-    json_result = json.dumps(ArrayDic, indent=4)
-    with open('resultado.json', 'w') as arquivo:
-        arquivo.write(json_result)
+    
     return JsonResponse(ArrayDic, safe=False)
 
 def Dash_RadarConformidade (request):
