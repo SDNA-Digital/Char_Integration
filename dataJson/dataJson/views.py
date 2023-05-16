@@ -314,9 +314,9 @@ def Tabela_Tarefas(request):
     for row in curs.fetchall():
         result_dict = {}
         result_dict['ID'] = row[0]
-        result_dict['Status'] = dic_status_tarefa[str(row[3])]
         result_dict['Plano'] = row[1]
-        result_dict['Area'] = dic_area_tarefa[str(row[3])]
+        result_dict['Area'] = dic_area_tarefa[str(row[2])]
+        result_dict['Status'] = dic_status_tarefa[str(row[3])]
         result_dict['Prazo'] = row[4]
         results.append(result_dict)
 
