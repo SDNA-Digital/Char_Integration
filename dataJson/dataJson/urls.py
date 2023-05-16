@@ -24,6 +24,7 @@ from .views import Dash_Processo
 from .views import Card_Processos
 from .views import Dash_ProcessoxArea
 from .views import Dash_PlanosMitigantes
+from .views import Tabela_Tarefas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,5 +35,6 @@ urlpatterns = [
     path('Dash_Processo/', Dash_Processo),
     path('Card_Processos/', Card_Processos),
     path('Dash_ProcessoxArea/', Dash_ProcessoxArea),
-    path('Dash_PlanosMitigantes/', Dash_PlanosMitigantes)
+    path('Dash_PlanosMitigantes/', Dash_PlanosMitigantes),
+    path('Tabela_Tarefas/', Tabela_Tarefas)
 ]
