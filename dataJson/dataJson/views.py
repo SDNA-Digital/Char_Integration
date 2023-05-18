@@ -325,7 +325,7 @@ def Tabela_Tarefas(request):
 
     return JsonResponse(results, safe=False)
 
-def Matriz_Probabilidade_Impacto(request):
+#def Matriz_Probabilidade_Impacto(request):
     
     connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()

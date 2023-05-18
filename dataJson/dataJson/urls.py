@@ -36,5 +36,5 @@ urlpatterns = [
     path('Card_Processos/', Card_Processos),
     path('Dash_ProcessoxArea/', Dash_ProcessoxArea),
     path('Dash_PlanosMitigantes/', Dash_PlanosMitigantes),
-    path('Tabela_Tarefas/', Tabela_Tarefas)
+    path('Tabela_Tarefas/', Tabela_Tarefas),
 ]
