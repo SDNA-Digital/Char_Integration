@@ -56,7 +56,7 @@ def Dash_Politicas_Manuais(request):
 
 def Dash_Norma (request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
     curs = connection.cursor()
 
     ArrayDic = []
