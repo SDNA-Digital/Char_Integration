@@ -28,7 +28,7 @@ from .views import Tabela_Tarefas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dataJson/', Dash_IncidenteArea),
+    path('Dash_IncidenteArea/', Dash_IncidenteArea),
     path('Dash_Politicas_Manuais/', Dash_Politicas_Manuais),
     path('Dash_Normas/', Dash_Norma),
     path('Dash_RadarConformidade/', Dash_RadarConformidade),
