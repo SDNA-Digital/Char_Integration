@@ -327,7 +327,7 @@ def Tabela_Tarefas(request):
 
 #def Matriz_Probabilidade_Impacto(request):
     
-    connection = pg.connect(user="postgres", password="SDNA@2022", host="localhost", port="5432", database="Eagle2")
+    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
     curs = connection.cursor()
     curs.execute ('SELECT processoid AS "ID", probabilidade AS "Probabilidade", impacto AS "Impacto" FROM matriz_probabilidade_impacto GROUP BY "ID", "Probabilidade", "Impacto" ORDER BY "ID", "Probabilidade", "Impacto"')
 
