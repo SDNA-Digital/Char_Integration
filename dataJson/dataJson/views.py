@@ -1,11 +1,18 @@
 from django.http import JsonResponse, HttpResponse
 import json
 import psycopg2 as pg
+from django.conf import settings
 
 
 def Dash_IncidenteArea(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    print(settings.DB_USER)
+
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('SELECT areaid as "AreaID", areanome as "Area", COUNT(*) as "QtdeIncidentes" FROM dash_incidentes GROUP BY areaid, areanome')
 
@@ -22,13 +29,17 @@ def Dash_IncidenteArea(request):
 
     curs.close
     connection.close
-
+   
     return JsonResponse(results, safe=False)
 
 
 def Dash_Politicas_Manuais(request):
     
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('select * from dash_politicas_manuais')
     
@@ -56,7 +67,11 @@ def Dash_Politicas_Manuais(request):
 
 def Dash_Norma (request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
 
     ArrayDic = []
@@ -84,7 +99,11 @@ def Dash_Norma (request):
 
 def Dash_RadarConformidade (request):
     
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
 
     ArrayDic = []
@@ -112,7 +131,11 @@ def Dash_RadarConformidade (request):
 
 def Dash_Processo (request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('SELECT processonivelrisco as "Nivel de Risco", mes as "Mes" , COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, "Mes" ORDER BY "Mes", "Nivel de Risco"')
 
@@ -169,7 +192,11 @@ def Dash_Processo (request):
         
 def Card_Processos(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('SELECT qtde_processos as "Processos_mapeados" FROM card_processos GROUP BY qtde_processos')
 
@@ -191,7 +218,11 @@ def Card_Processos(request):
 
 def Dash_ProcessoxArea(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('SELECT processonivelrisco as "Nivel de Risco", areaid as "Area" , COUNT(*) AS "QtdeProcessos" FROM dash_processo GROUP BY processonivelrisco, "Area" ORDER BY "Area", "Nivel de Risco"')
 
@@ -233,7 +264,11 @@ def Dash_ProcessoxArea(request):
 
 def Dash_PlanosMitigantes(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute('SELECT tarefastatustarefa as "status", mes as "mes_criacao", tarefaprevtermino as "prevtermino" , COUNT(*) AS "QtdeTarefas" FROM dash_tarefa GROUP BY tarefastatustarefa, "mes_criacao", tarefaprevtermino ORDER BY "mes_criacao", "status", "prevtermino"')
 
@@ -290,7 +325,11 @@ def Dash_PlanosMitigantes(request):
 
 def Tabela_Tarefas(request):
 
-    connection = pg.connect(user="postgres", password="0832", host="localhost", port="5432", database="Eagle")
+    connection = pg.connect(user=settings.DB_USER,
+                            password=settings.DB_PASSWORD,
+                            host=settings.DB_HOST,
+                            port=settings.DB_PORT,
+                            database=settings.DB_NAME)
     curs = connection.cursor()
     curs.execute ('SELECT tarefaid AS "ID", tarefatitulo AS "Plano", usuario_areaid AS "Area", tarefastatustarefa AS "Status", tarefaprevtermino AS "Prazo" FROM table_tarefa GROUP BY "ID", "Plano", "Area", "Status", "Prazo" ORDER BY "ID", "Plano", "Area", "Status", "Prazo"')
 
