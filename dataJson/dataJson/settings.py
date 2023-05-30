@@ -59,7 +59,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:9000',
+    'https://testevercel-git-main-vini347.vercel.app/',
+    'https://testevercel-lime.vercel.app/'
 ]
 ROOT_URLCONF = 'dataJson.urls'
 TEMPLATES = [
