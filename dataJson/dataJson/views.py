@@ -47,8 +47,6 @@ def Dash_Politicas_Manuais(request):
             result_dict[columns[i]] = tupleItem
         ArrayDic.append(result_dict)
     
-    print(result)
-
     curs.close
     connection.close
     
@@ -75,7 +73,6 @@ def Dash_Norma (request):
                    
             result_dict[columns[i]] = tupleItem
         ArrayDic.append(result_dict)
-    print(ArrayDic)
 
     curs.close
     connection.close
@@ -103,7 +100,6 @@ def Dash_RadarConformidade (request):
                    
             result_dict[columns[i]] = tupleItem
         ArrayDic.append(result_dict)
-    print(ArrayDic)
 
     curs.close
     connection.close
@@ -285,7 +281,6 @@ def Dash_PlanosMitigantes(request):
     for mes, data in results_grouped.items():
         data['mes_criacao'] = mes
         final_results.append(data)
-        print(final_results)
     return JsonResponse(final_results, safe=False)
 
 def Tabela_Tarefas(request):

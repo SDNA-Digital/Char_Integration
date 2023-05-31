@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*-ys0h6qx0ypyplpx8^x@y+hj4%(i_9fz-1&qkyxt5+#)$e#9!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 # Application definition
 INSTALLED_APPS = [
     'corsheaders',
@@ -38,7 +38,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
     'http://127.0.0.1:9000',
+    'https://megazord-dashboard.onrender.com',
 ]
 ROOT_URLCONF = 'dataJson.urls'
 TEMPLATES = [
